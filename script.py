@@ -83,3 +83,7 @@ print("Foreign schools saved to foreign_schools.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+# TODO: Create a download button to export all to excel
+# TODO: Create a dropdown menu to filter by country
+# TODO: Create a dropdown menu to filter by net balance
