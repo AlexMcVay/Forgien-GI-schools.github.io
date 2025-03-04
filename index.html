@@ -10,7 +10,7 @@
     <h1>Foreign Schools GI Bill Analysis</h1>
     <div id="file uplaod">Step 1: Upload Excel File
         <br>
-        Upload the Excel file containing foreign schools data. from this <link href="https://www.benefits.va.gov/GIBILL/docs/job_aids/ComparisonToolData.xlsx">link</link>
+        Upload the Excel file containing foreign schools data from this <a href="https://www.benefits.va.gov/GIBILL/docs/job_aids/ComparisonToolData.xlsx">link</a>
         <br>
         <input type="file" id="fileInput" />
         <button id="loadData">Load Data</button>
@@ -24,39 +24,6 @@
         <!-- t -->
     </table>
 
-    <script type="text/python">
-        import pandas as pd
-        from pyodide.http import pyfetch
-        from js import document
-
-        async def load_excel_file():
-            file_input = document.getElementById("fileInput")
-            file = file_input.files.item(0)
-
-            if not file:
-                print("No file selected")
-                return
-
-            # Read the uploaded Excel file
-            file_reader = await file.text()
-            df = pd.read_excel(file_reader, sheet_name="Comparison_Tool_Data_Full")
-
-            # Filter for foreign schools (not in the US)
-            df = df[df["country"] != "United States"]
-
-            # Convert numeric columns
-            df["bah"] = pd.to_numeric(df["bah"], errors="coerce")
-            df["tuition in state"] = pd.to_numeric(df["tuition in state"], errors="coerce")
-            df["Net Balance"] = df["bah"] - df["tuition in state"]
-
-            # Display in table
-            table = document.getElementById("data-table")
-            for _, row in df.iterrows():
-                tr = document.createElement("tr")
-                tr.innerHTML = f"<td>{row['institution']}</td><td>{row['country']}</td><td>${row['Net Balance']}</td>"
-                table.appendChild(tr)
-
-        document.getElementById("loadData").addEventListener("click", lambda event: load_excel_file())
-    </script>
+    <script type="text/python" href="script.py"></script>
 </body>
 </html>

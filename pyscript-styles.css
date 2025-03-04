@@ -18,7 +18,7 @@ h1, h2, h3 {
 
 a {
   color: var(--secondary-color);
-  text-decoration: none;
+  text-decoration: bold;
 }
 
 a:hover {
@@ -27,7 +27,7 @@ a:hover {
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
 }
 
 th, td {
@@ -38,13 +38,14 @@ th, td {
 
 th {
   background-color: var(--primary-color);    
-  color: #fff;
+  color: var(--secondary-color);
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: var(--background-color);
 }
 
 tr:hover {
-  background-color: #ddd;
+  background-color: var(--secondary-color);
+  color: var(--background-color);
 }
