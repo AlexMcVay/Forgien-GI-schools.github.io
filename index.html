@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foreign Schools GI Bill Analysis</title>
     <link rel="stylesheet" href="pyscript-styles.css">
-    </head>
+</head>
 <body>
     <h1>Foreign Schools GI Bill Analysis</h1>
-    <div id="file uplaod">Step 1: Upload Excel File
+    <div id="file-upload">Step 1: Upload Excel File
         <br>
         Upload the Excel file containing foreign schools data from this <a href="https://www.benefits.va.gov/GIBILL/docs/job_aids/ComparisonToolData.xlsx">link</a>
         <br>
         <input type="file" id="fileInput" />
         <button id="loadData">Load Data</button>
-        </div> 
+    </div> 
     <table id="data-table">
-        <tr>
-            <th>School Name</th>
-            <th>Country</th>
-            <th>Net Balance</th>
-        </tr>
-        <!-- t -->
+        <thead>
+            <tr>
+                <th>School Name</th>
+                <th>Country</th>
+                <th>Net Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
     </table>
 
-    <script type="text/python" href="script.py"></script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
