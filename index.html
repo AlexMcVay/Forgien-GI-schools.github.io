@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreign Schools GI Bill Analysis</title>
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+    <style type="text/css" id="pyscript-styles" data-pyscript-styles>    </style>
+</head>
+<body>
+    <h2>Foreign Schools GI Bill Analysis</h2>
+    
+    <input type="file" id="fileInput" />
+    <button id="loadData">Load Data</button>
+
+    <table id="data-table">
+        <tr>
+            <th>School Name</th>
+            <th>Country</th>
+            <th>Net Balance</th>
+        </tr>
+    </table>
+
+    <py-script>
+        import pandas as pd
+        from pyodide.http import pyfetch
+        from js import document
+
+        async def load_excel_file():
+            file_input = document.getElementById("fileInput")
+            file = file_input.files.item(0)
+
+            if not file:
+                print("No file selected")
+                return
+
+            # Read the uploaded Excel file
+            file_reader = await file.text()
+            df = pd.read_excel(file_reader, sheet_name="Comparison_Tool_Data_Full")
+
+            # Filter for foreign schools (not in the US)
+            df = df[df["country"] != "United States"]
+
+            # Convert numeric columns
+            df["bah"] = pd.to_numeric(df["bah"], errors="coerce")
+            df["tuition in state"] = pd.to_numeric(df["tuition in state"], errors="coerce")
+            df["Net Balance"] = df["bah"] - df["tuition in state"]
+
+            # Display in table
+            table = document.getElementById("data-table")
+            for _, row in df.iterrows():
+                tr = document.createElement("tr")
+                tr.innerHTML = f"<td>{row['institution']}</td><td>{row['country']}</td><td>${row['Net Balance']}</td>"
+                table.appendChild(tr)
+
+        document.getElementById("loadData").addEventListener("click", lambda event: load_excel_file())
+    </py-script>
+</body>
+</html>
