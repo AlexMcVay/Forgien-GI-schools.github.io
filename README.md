@@ -1,5 +1,7 @@
 # Foreign Schools GI Bill Analysis
 
+[![wakatime](https://wakatime.com/badge/user/b0da6dba-e0b5-4ab0-814a-b13bb1500da8/project/f0b380ef-8cbe-45f8-8b2a-73012ec17729.svg)](https://wakatime.com/badge/user/b0da6dba-e0b5-4ab0-814a-b13bb1500da8/project/f0b380ef-8cbe-45f8-8b2a-73012ec17729)
+
 ## Overview
 This project aims to create a simple database of schools outside the USA available to veterans of the US Armed Forces using military benefits.
 
