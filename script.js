@@ -1,13 +1,4 @@
-document.getElementById("loadData").addEventListener("click", function() {
-    const fileInput = document.getElementById("fileInput");
-    
-    // Check if a file is uploaded
-    if (fileInput.files.length === 0) {
-        alert("Please upload an Excel file.");
-        return;
-    }
-    
-    const file = fileInput.files[0];
+function handleFile(file) {
     const reader = new FileReader();
     
     // Read the file as an ArrayBuffer
@@ -37,11 +28,48 @@ document.getElementById("loadData").addEventListener("click", function() {
                 tr.innerHTML = `
                     <td>${row["institution"] || "N/A"}</td>
                     <td>${row["country"]}</td>
-                    <td>${(row["bah"] || 0) - (row["tuition in state"] || 0)}</td>
+                    <td>${mha - (row["tuition in state"] || 0)}</td>
                 `;
                 
                 tableBody.appendChild(tr); // Append the row to the table
             }
         });
     };
-});
+}
+    
+    const downloadCsvButton = document.getElementById("download-csv");
+    downloadCsvButton.addEventListener("click", () => {
+        const tableData = [];
+        const tableRows = document.querySelectorAll("#data-table tbody tr");
+        tableRows.forEach(row => {
+            const cells = row.cells;
+            const rowValues = [];
+            for (let i = 0; i < cells.length; i++) {
+                rowValues.push(cells[i].textContent);
+            }
+            tableData.push(rowValues);
+        });
+        
+        const csvContent = "Institution,Country,Net Balance\n" + tableData.map(row => row.join(",")).join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = "foreign_schools.csv";
+        link.click();
+        URL.revokeObjectURL(url);
+    });
+function handleMhaSubmit() {
+    const mhaInput = document.getElementById("mha-input");
+    const mha = Number(mhaInput.value);
+    
+    if (isNaN(mha)) {
+        alert("Please enter a valid number for MHA.");
+        return;
+    }
+    
+    handleFile(document.getElementById("fileInput").files[0]);
+}
+
+document.getElementById("loadData").addEventListener("click", handleMhaSubmit);
+

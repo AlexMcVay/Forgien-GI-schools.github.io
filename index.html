@@ -26,6 +26,7 @@
     <label for="mha-input">MHA (Monthly Housing Allowance):</label>
     <input type="number" id="mha-input" placeholder="Enter MHA ($)" onchange="mha = this.value">
     <small>Enter your monthly housing allowance (in USD)</small>
+    <button id="submit-button" onclick="handleMhaSubmit()">Submit</button>
     </section>
     
     
@@ -38,14 +39,14 @@
                 <th>Net Balance</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="data-table-body">
             <!-- Data will be inserted here -->
         </tbody>
     </table>
-
-    <script type="text/javascript" src="script.js"></script>
     </section>
+    <script type="text/javascript" src="script.js"></script>
 </body>
+    <button id="download-button" onclick="downloadCsv()">Download CSV</button>
 <footer>
     <p id="disclaimer" style="text-align:center; font-size: 0.8em; color: gray;">
         Programmed by Alex McVay. Check out my <a href="h#">portfolio</a> or <a href="#">buy me a coffee</a> 
