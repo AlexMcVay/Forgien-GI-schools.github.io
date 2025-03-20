@@ -1,55 +1,41 @@
+  <!--<section id="step">
+    <h2>Step 2: lookup your MHA <a href="https://www.va.gov/education/benefit-rates/post-9-11-gi-bill-rates/#:~:text=of%20higher%20learning-,MHA%20for%20foreign%20institutions%20of%20higher%20learning,pay%20you%20up%20to%20$2%2C355.)">here</a></h2>
+    <label for="mha-input">MHA (Monthly Housing Allowance):</label>
+    <input type="number" id="mha-input" placeholder="Enter MHA ($)" onchange="mha = this.value">
+    <small>Enter your monthly housing allowance (in USD)</small>
+    <button id="submit-button" onclick="handleMhaSubmit()">Submit</button>
+    </section>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foreign Schools GI Bill Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script defer src="script.js"></script>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
-    <section id="step">
-        
-    
-    <h1>Foreign Schools GI Bill Analysis</h1>
-    <div id="file-upload">
-    <h2>Step 1: Upload Excel File</h2>
-        <br>
-        Upload the Excel file containing foreign schools data from this <a href="https://www.benefits.va.gov/GIBILL/docs/job_aids/ComparisonToolData.xlsx">link</a>
-        <br>
-        <label for="fileInput">Select File:</label>
-        <input type="file" id="fileInput" accept=".xslx, .xls" onchange="handleFile(this.files[0])">
-    </div> 
-
-    </section>
-
-    <section id="step">
-    <h2>Step 2: lookup your MHA <a href="https://www.va.gov/education/benefit-rates/post-9-11-gi-bill-rates/#:~:text=of%20higher%20learning-,MHA%20for%20foreign%20institutions%20of%20higher%20learning,pay%20you%20up%20to%20$2%2C355.)">here</a></h2>
-    <label for="mha-input">MHA (Monthly Housing Allowance):</label>
-    <input type="number" id="mha-input" placeholder="Enter MHA ($)" onchange="mha = this.value">
-    <small>Enter your monthly housing allowance (in USD)</small>
-    <button id="submit-button" onclick="handleMhaSubmit()">Submit</button>
-    </section>
-    
-    
-    <section id="results">
+    <h2>Foreign Schools GI Bill Analysis</h2>
     <table id="data-table">
         <thead>
             <tr>
-                <th>School Name</th>
+                <th>Institution</th>
                 <th>Country</th>
+                <th>BAH</th>
+                <th>Tuition (In-State)</th>
                 <th>Net Balance</th>
             </tr>
         </thead>
-        <tbody id="data-table-body">
-            <!-- Data will be inserted here -->
-        </tbody>
+        <tbody></tbody>
     </table>
-    </section>
-    <script type="text/javascript" src="script.js"></script>
 </body>
-    <button id="download-button" onclick="downloadCsv()">Download CSV</button>
 <footer>
-    <p id="disclaimer" style="text-align:center; font-size: 0.8em; color: gray;">
-        Programmed by Alex McVay. Check out my <a href="h#">portfolio</a> or <a href="#">buy me a coffee</a> 
+    <p id="disclaimer">
         Disclaimer: This analysis is for informational purposes only and does not guarantee benefit eligibility or amounts.
     </p>
 </footer>

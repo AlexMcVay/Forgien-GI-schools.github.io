@@ -1,5 +1,1 @@
-flask
-pandas
-requests
-openpyxl
-gunicorn
+pandas requests supabase
