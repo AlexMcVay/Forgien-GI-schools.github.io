@@ -24,4 +24,6 @@ df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
 # Upload to Supabase
 data = df.to_dict(orient="records")
 supabase_client.table("foreign_schools").insert(data).execute()
-print("Data uploaded successfully!")
+print(" VA GIBILL Data uploaded successfully!")
+
+

@@ -1,10 +1,3 @@
-  <!--<section id="step">
-    <h2>Step 2: lookup your MHA <a href="https://www.va.gov/education/benefit-rates/post-9-11-gi-bill-rates/#:~:text=of%20higher%20learning-,MHA%20for%20foreign%20institutions%20of%20higher%20learning,pay%20you%20up%20to%20$2%2C355.)">here</a></h2>
-    <label for="mha-input">MHA (Monthly Housing Allowance):</label>
-    <input type="number" id="mha-input" placeholder="Enter MHA ($)" onchange="mha = this.value">
-    <small>Enter your monthly housing allowance (in USD)</small>
-    <button id="submit-button" onclick="handleMhaSubmit()">Submit</button>
-    </section>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,30 +6,43 @@
     <title>Foreign Schools GI Bill Analysis</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script defer src="script.js"></script>
-    <style>
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid black; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yohns/picocss@2.2.10/css/pico.min.css" />
+    <style type="text/css" id="pico-styles" ></style>
 </head>
 <body>
     <h2>Foreign Schools GI Bill Analysis</h2>
+    <section id="step">
+        
+    <p>
+        Lookup your MHA 
+        <a href="https://www.va.gov/education/benefit-rates/post-9-11-gi-bill-rates/#:~:text=of%20higher%20learning-,MHA%20for%20foreign%20institutions%20of%20higher%20learning,pay%20you%20up%20to%20$2%2C355.)">here</a>
+    </p>
+    <label for="mha-input">MHA (Monthly Housing Allowance):</label>
+    <input type="number" id="mha-input" placeholder="Enter MHA ($)" onchange="mha = this.value">
+    <button id="submit-button" onclick="handleMhaSubmit()">Submit</button>
+    </section>
     <table id="data-table">
         <thead>
             <tr>
-                <th>Institution</th>
-                <th>Country</th>
-                <th>BAH</th>
-                <th>Tuition (In-State)</th>
-                <th>Net Balance</th>
+                <!-- TODO: #3 add filters-->
+                <th scope="col">Institution</th>
+                <th scope="col">Country</th>
+                <th scope="col">Cost of Living</th>
+                <th scope="col">Net Balance</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
+    <button id="download-button">Download</button>
+    <script>
+        //TODO: Create a download button to export all to excel
+    </script>
 </body>
 <footer>
-    <p id="disclaimer">
+    <small>
         Disclaimer: This analysis is for informational purposes only and does not guarantee benefit eligibility or amounts.
-    </p>
+        Data is collected from the <a href="https://www.benefits.va.gov/GIBILL/docs/job_aids/ComparisonToolData.xlsx">VA Comparison Tool Excel sheet</a>.
+        and the <a href="https://data.un.org/">United Nations</a>
+    </small>
 </footer>
 </html>
